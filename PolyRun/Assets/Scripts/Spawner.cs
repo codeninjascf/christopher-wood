@@ -9,6 +9,8 @@ public class Spawner : MonoBehaviour
     private List<GameObject> _activeObjects;
     void Start()
     {
+        _activeObjects = new List<GameObject>();
+        StartCoroutine(Spawn());
         
     }
  
@@ -28,5 +30,12 @@ public class Spawner : MonoBehaviour
         GameManager.UpdateList(_activeObjects);
 
         GameObject challengeObject = Instantiate(GameManager.GetChallengeObject());
+        challengeObject.transform.position = new Vector3(GameManager.ScreenBounds.x, 0);
+        _activeObjects.Add(challengeObject);
+
+        ChallengeObject script = challengeObject.GetComponent<ChallengeObject>();
+
+        yield return new WaitForSeconds(script.challengeTime);
+        StartCoroutine(Spawn());
     }
 }
