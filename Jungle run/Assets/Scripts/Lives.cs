@@ -4,15 +4,30 @@ using UnityEngine;
 
 public class Lives : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private int _lives = 3;
+
+    public int GetLives()
     {
-        
+        return _lives;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SetLives(int lives)
     {
-        
+        _lives = lives;
+    }
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            _lives--;
+            if (_lives == 0)
+            {
+                GameManager.GameOver = true;
+            }
+            else
+            {
+                Destroy(other.gameObject);
+            }
+        }
     }
 }
