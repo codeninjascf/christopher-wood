@@ -5,13 +5,13 @@ using UnityEngine;
 public class DoorSwitch : MonoBehaviour
 {
     public GameObject enabledObject;
-    public GameObject disbledObject;
+    public GameObject disabledObject;
 
     
     void Start()
     {
         enabledObject.SetActive(false);
-        disbledObject.SetActive(true);
+        disabledObject.SetActive(true);
 
         SwitchEnabled = false;
     }
@@ -23,7 +23,7 @@ public class DoorSwitch : MonoBehaviour
     }
 
 
-    public bool SwitchEnabled;
+    public bool SwitchEnabled
     {
         get;
         private set;
@@ -34,6 +34,20 @@ public class DoorSwitch : MonoBehaviour
         disabledObject.SetActive(true);
 
         SwitchEnabled = false;
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        enabledObject.SetActive(true);
+        disabledObject.SetActive(false);
+
+        SwitchEnabled = true;
+    }
+    void OnTriggerStay(Collider other)
+    {
+        enabledObject.SetActive(true);
+        disabledObject.SetActive(false);
+
+        SwitchEnabled = true;
     }
 
 
