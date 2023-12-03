@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public Level level;
     public GridManager gridManager;
-    
+
     private bool _gameEnded;
 
     void Start()
@@ -16,13 +16,13 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-       if(level.GameOver && gridManager.MoveComplete && !_gameEnded)
-       {
+        if (level.GameOver && gridManager.MoveComplete && !_gameEnded)
+        {
             _gameEnded = true;
 
             level.UpdateHighScore(gridManager.Score);
             level.UpdateStarsAchieved(gridManager.Score);
-       } 
+        }
     }
 
     void LateUpdate()
@@ -33,8 +33,3 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-
-
-
-
-

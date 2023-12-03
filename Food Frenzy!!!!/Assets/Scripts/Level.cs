@@ -29,14 +29,14 @@ public class Level : MonoBehaviour
     || type == LevelType.Time && TimeRemaining <= 0;
     public int StarsAchieved(int score) => Convert.ToInt32(score >= firstStar) +
     Convert.ToInt32(score >= secondStar) + Convert.ToInt32(score >= thirdStar);
-    
+
     public void UpdateHighScore(int score) => PlayerPrefs.SetInt(_levelName +
     "_HighScore", Math.Max(score, HighScore));
 
     public void UpdateStarsAchieved(int score) => PlayerPrefs.SetInt(_levelName +
     "_Stars", StarsAchieved(score));
-   
-    
+
+
 
     void Awake()
     {
@@ -47,16 +47,19 @@ public class Level : MonoBehaviour
 
         HighScore = PlayerPrefs.GetInt(_levelName + "_HighScore", 0);
     }
-    
-    
+
+
     void Start()
     {
-        
+
     }
 
-    
+
     void Update()
     {
         TimeRemaining -= Time.deltaTime;
     }
 }
+
+
+
