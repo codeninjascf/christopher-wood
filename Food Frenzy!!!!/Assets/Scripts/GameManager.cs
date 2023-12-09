@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
         {
             uiManager.criteriaInfoText.text = "MovesRemaining:";
         }
-        else if
+        else if(level.type == LevelType.Time)
         {
             uiManager.criteriaInfoText.text = "Time Remaining:";
         }
@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             uiManager.criteriaNumber.text = time.ToString(@"mm\:ss");
         }
 
-        int starsAchieved - level.StarsAchieved(gridManager.Score);
+        int starsAchieved = level.StarsAchieved(gridManager.Score);
 
         uiManager.UpdateScores(gridManager.Score);
         uiManager.UpdateStars(starsAchieved);
@@ -51,6 +51,16 @@ public class GameManager : MonoBehaviour
         if (level.GameOver && gridManager.MoveComplete && !_gameEnded)
         {
             _gameEnded = true;
+
+            gridManager.GameActive = false;
+
+            string gameOverText = starsAchieved switch
+            {
+                0 => "Try Again!",
+                1 => "Good Job!",
+                2 => "Excellent!",
+                3 => "Perfect!!"
+            };
 
             level.UpdateHighScore(gridManager.Score);
             level.UpdateStarsAchieved(gridManager.Score);
