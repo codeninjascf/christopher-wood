@@ -22,7 +22,13 @@ public class PlayerController : MonoBehaviour
     
     void Update()
     {
-        
+        _isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
+            groundDistanceThreshold, whatIsGround);
+
+        if(_isGrounded && Input.GetButtonDown("Jump"))
+        {
+            _rigidbody.velocity = Vector2.up * jumpForce;
+        }
     }
 
     private void FixedUpdate()
