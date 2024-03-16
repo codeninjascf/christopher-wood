@@ -15,9 +15,13 @@ public class PlayerController : MonoBehaviour
     private bool _enabled;
     private Rigidbody2D _rigidbody;
 
+    private Animator _animator;
+    
     void Start()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
+        
         _enabled = true;
     }
 
@@ -32,13 +36,29 @@ public class PlayerController : MonoBehaviour
         {
             _rigidbody.velocity = Vector2.up * jumpForce;
         }
+        else
+        {
+            _animator.SetBool("Jumping", false);
+        }
+
+        _animator.SetBool("Falling", !_isGrounded);
     }
 
     void FixedUpdate()
     {
         if (!_enabled) return;
-
         float movement = moveSpeed * Input.GetAxisRaw("Horizontal");
+
+        _animator.SetBool("Moving", movement != 0);
+
+        if(movement > 0)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if(movement < 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1); ; ; ;
+        }
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
     }
@@ -50,6 +70,10 @@ public class PlayerController : MonoBehaviour
     public void Disable()
     {
         _enabled = false;
+
+        _animator.SetBool("Moving", false);
+        _animator.SetBool("Jumping", false);
+        _animator.SetBool("Falling", false);
     }
 
 

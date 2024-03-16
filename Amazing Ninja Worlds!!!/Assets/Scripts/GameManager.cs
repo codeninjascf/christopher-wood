@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     public PlayerController player;
     public CameraFollow cam;
     public Transform[] checkpoints;
-    public Transform[] collectibles;
+    public Transform[] collectibles = new Transform[3];
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
