@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8316684088670056833}
   - component: {fileID: 4395672819441244114}
+  - component: {fileID: 4709799096032407364}
   m_Layer: 0
   m_Name: Collectible
   m_TagString: Collectible
@@ -31,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 5530404468761119710}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &4395672819441244114
 PolygonCollider2D:
@@ -83,6 +84,27 @@ PolygonCollider2D:
       - {x: 0.4975165, y: 0.18095636}
       - {x: 0.9358261, y: 0.5983939}
   m_UseDelaunayMesh: 0
+--- !u!95 &4709799096032407364
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142764960976635823}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a54e01a473791044ababf2c52aa96bc3, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &6546204201487234693
 GameObject:
   m_ObjectHideFlags: 0
