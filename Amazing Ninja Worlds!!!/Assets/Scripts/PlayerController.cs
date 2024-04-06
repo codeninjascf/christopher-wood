@@ -85,7 +85,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Checkpoint"))
         {
@@ -95,6 +95,10 @@ public class PlayerController : MonoBehaviour
         {
             gameManager.GotCollectible(other.transform);
             other.gameObject.SetActive(false);
+        }
+        else if (other.CompareTag("Goal"))
+        {
+            gameManager.ReachedGoal();
         }
     }
 }
