@@ -37,7 +37,18 @@ public class GameManager : MonoBehaviour
     IEnumerator ResetPlayer()
     {
         yield return new WaitForSeconds(respawnDelay);
+
         Vector3 spawnPosition = checkpoints[_currentCheckpoint].position;
+        if(checkpoints[_currentCheckpoint].localScale.y == -1)
+        {
+            player.GravityFlipped = true;
+            spawnPosition += new Vector3(0, -player.spriteHeight, 0);
+        }
+        else
+        {
+            player.GravityFlipped = false;
+        }
+
         player.Enable();
         player.gameObject.SetActive(true);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;

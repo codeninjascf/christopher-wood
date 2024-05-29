@@ -65,12 +65,15 @@ public class PlayerController : MonoBehaviour
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         if (!_enabled) return;
-       _isGrounded = Physics2D.Raycast(transform.position, Vector2.down,
-       groundDistanceThreshold, whatIsGround);
+       _isGrounded = !GravityFlipped ? 
+        Physics2D.Raycast(transform.position, Vector2.down,
+        groundDistanceThreshold, whatIsGround)
+        : Physics2D.Raycast(transform.position, Vector2.up,
+        groundDistanceThreshold + spriteHeight, whatIsGround);
 
        if(_isGrounded &&  Input.GetButtonDown("Jump"))
        {
