@@ -979,7 +979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   previousLevelNumber: 3
-  levelName: Level4
+  levelName: Level 4
   unlockedSprite: {fileID: 21300000, guid: 1367f433ea8e2a246847c887ecf37830, type: 3}
   lockedSprite: {fileID: 21300000, guid: c62347a3953d6c44fb23f78eb4564522, type: 3}
 --- !u!95 &546962945
