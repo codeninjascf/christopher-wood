@@ -17,7 +17,7 @@ public class ShurikenController : MonoBehaviour
     
     void Update()
     {
-        transform.position += despawnTime.deltaTime * _direction
+        transform.position += Time.deltaTime * _direction
             * speed * Vector3.right;
     }
 

@@ -10,6 +10,8 @@ public class GameManager : MonoBehaviour
     public float respawnDelay = 1.5f;
     public string menuSceneName;
     public string nextLevelName;
+    public bool shurikensEnabled;
+
     public PlayerController player;
     public CameraFollow cam;
     public Transform[] checkpoints;
@@ -20,7 +22,16 @@ public class GameManager : MonoBehaviour
 
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
+    private int _shurikens;
 
+    public int Shurikens
+    {
+        get => _shurikens;
+        set
+        {
+            _shurikens = value;
+        }
+    }
     public void KillPlayer()
     {
         player.Disable();
@@ -62,6 +73,8 @@ public class GameManager : MonoBehaviour
     {
         _currentCheckpoint = 0;
         _collectiblesCollected = new bool[3];
+
+        Shurikens = 5;
 
         levelCompleteMenu.SetActive(false);
         rubiesDisplay.levelNumber = levelNumber;
