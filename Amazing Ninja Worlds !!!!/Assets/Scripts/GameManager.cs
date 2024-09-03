@@ -1,8 +1,8 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -20,6 +20,9 @@ public class GameManager : MonoBehaviour
     public GameObject levelCompleteMenu;
     public RubiesDisplay rubiesDisplay;
 
+    public GameObject shurikenOverlay;
+    public TextMeshProUGUI shurikenText;
+    public GameObject[] shurikenCollectibles;
     private int _currentCheckpoint;
     private bool[] _collectiblesCollected;
     private int _shurikens;
@@ -60,6 +63,13 @@ public class GameManager : MonoBehaviour
             player.GravityFlipped = false;
         }
 
+        Shurikens = 0;
+
+        foreach(GameObject shurikenCollectible in shurikenCollectibles)
+        {
+            shurikenCollectible.SetActive(true);
+        }
+
         player.Enable();
         player.gameObject.SetActive(true);
         player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
@@ -74,7 +84,7 @@ public class GameManager : MonoBehaviour
         _currentCheckpoint = 0;
         _collectiblesCollected = new bool[3];
 
-        Shurikens = 5;
+        Shurikens = 0;
 
         levelCompleteMenu.SetActive(false);
         rubiesDisplay.levelNumber = levelNumber;
