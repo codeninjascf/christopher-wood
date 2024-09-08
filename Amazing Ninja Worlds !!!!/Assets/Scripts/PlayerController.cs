@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private bool _enabled;
     private Rigidbody2D _rigidbody;
 
+    private AudioManager _audioManager;
+    
     private Animator _animator;
 
     public bool GravityFlipped
@@ -43,6 +45,7 @@ public class PlayerController : MonoBehaviour
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _audioManager = FindObjectOfType<AudioManager>();
 
         GravityFlipped = false;
         _enabled = true;
@@ -65,13 +68,30 @@ public class PlayerController : MonoBehaviour
         }
 
         _rigidbody.position += movement * Time.deltaTime * Vector2.right;
+
+        if(movement == 0 || !_isGrounded)
+        {
+            _audioManager.StopAudio("PlayerRun");
+        }
+        else
+        {
+            _audioManager.PlayAudio("PlayerRun");
+        }
     }
 
     
     void Update()
     {
         if (!_enabled) return;
-       _isGrounded = !GravityFlipped ? 
+
+        bool previouslyGrounded = _isGrounded;
+
+        if(!previouslyGrounded && _isGrounded)
+        {
+            _audioManager.PlayAudio("PlayerLand");
+        }
+
+        _isGrounded = !GravityFlipped ? 
         Physics2D.Raycast(transform.position, Vector2.down,
         groundDistanceThreshold, whatIsGround)
         : Physics2D.Raycast(transform.position, Vector2.up,
@@ -79,7 +99,9 @@ public class PlayerController : MonoBehaviour
 
        if(_isGrounded &&  Input.GetButtonDown("Jump"))
        {
-        _rigidbody.velocity = Vector2.up * jumpForce;
+            _animator.SetBool("Jumping", true);
+            _rigidbody.velocity = Vector2.up * jumpForce;
+            _audioManager.PlayAudio("PlayerJump");
        }
        else
        {
@@ -94,6 +116,7 @@ public class PlayerController : MonoBehaviour
             newShuriken.GetComponent<ShurikenController>().Initialise(
                 (int)transform.localScale.x);
             gameManager.Shurikens--;
+            _audioManager.PlayAudio("ShurikenThrow");
         }
 
     }
