@@ -8,6 +8,10 @@ public class PlayerControleer : MonoBehaviour
     
     public float moveSpeed;
     public float jumpForce;
+
+    public Transform groundPoint;
+    private bool isOnGround;
+    public LayerMask whatIsGround;
     void Start()
     {
         
@@ -17,9 +21,10 @@ public class PlayerControleer : MonoBehaviour
     void Update()
     {
         theRB.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * moveSpeed, theRB.velocity.y);
-    
 
-        if(Input.GetButtonDown("Jump"))
+        isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);    
+
+        if(Input.GetButtonDown("Jump") && isOnGround) 
         {
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
