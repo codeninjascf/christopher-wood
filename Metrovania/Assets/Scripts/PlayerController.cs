@@ -15,6 +15,9 @@ public class PlayerControleer : MonoBehaviour
 
     public Animator anim;
 
+    public BulletController shotToFire;
+    public Transform shotPoint;
+
     void Start()
     {
         
@@ -36,7 +39,6 @@ public class PlayerControleer : MonoBehaviour
             transform.localScale = Vector3.one;
         }
         
-        
         // checking if on ground
         isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);    
 
@@ -46,6 +48,12 @@ public class PlayerControleer : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
 
+        // Shooting
+        if(Input.GetButtonDown("Fire1"))
+        {
+            Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
+            anim.SetTrigger("shotFired");
+        }
         anim.SetBool("isOnGround", isOnGround);
         anim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
     }

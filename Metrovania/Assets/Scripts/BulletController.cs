@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BulletController : MonoBehaviour
@@ -9,6 +8,8 @@ public class BulletController : MonoBehaviour
     public Rigidbody2D theRB;
 
     public Vector2 moveDir;
+
+    public GameObject impactEffect;
 
 
     void Start()
@@ -24,6 +25,12 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (other.gameObject.CompareTag("noCollide")) return;
+        if (impactEffect != null)
+        {
+            Instantiate(impactEffect, transform.position, Quaternion.identity);
+        }
+        
         Destroy(gameObject);
     }
 
