@@ -18,6 +18,8 @@ public class PlayerControleer : MonoBehaviour
     public BulletController shotToFire;
     public Transform shotPoint;
 
+    private bool canDoubleJump;
+
     void Start()
     {
         
@@ -45,6 +47,14 @@ public class PlayerControleer : MonoBehaviour
         // jumping
         if(Input.GetButtonDown("Jump") && isOnGround) 
         {
+            if (isOnGround)
+            {
+                canDoubleJump = true;
+            }
+            else
+            {
+                canDoubleJump = false;
+            }
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
 
