@@ -23,18 +23,41 @@ public class PlayerControleer : MonoBehaviour
     public float dashSpeed, dashTime;
     private float dashCounter;
 
+    public SpriteRenderer theSR, afterImage;
+    public float afterImageLifetime, timeBetweenAfterImages;
+    private float afterImageCounter;
+    public Color afterImageColor;
+
+    public float waitAfterDashing;
+    private float dashRechargeCounter;
+
     void Start()
     {
         
     }
 
+    
+    
+    
+    
     // Update is called once per frame
     void Update()
     {
-        
-        if(Input.GetButtonDown("Fire2"))
+        if (dashRechargeCounter > 0)
         {
-            dashCounter = dashTime;
+            dashRechargeCounter -= Time.deltaTime;
+        }
+        else
+        {
+
+
+            if (Input.GetButtonDown("Fire2"))
+            {
+                dashCounter = dashTime;
+
+                ShowAfterImage();
+            }
+            
         }
         
         if (dashCounter > 0)
@@ -42,6 +65,13 @@ public class PlayerControleer : MonoBehaviour
             dashCounter = dashCounter - Time.deltaTime;
 
             theRB.velocity = new Vector2(dashSpeed * transform.localScale.x, theRB.velocity.y);
+
+            afterImageCounter -= Time.deltaTime;
+            if (afterImageCounter <= 0)
+            {
+                ShowAfterImage();
+            }
+            dashRechargeCounter = waitAfterDashing;
         }
         else
         {
@@ -63,7 +93,7 @@ public class PlayerControleer : MonoBehaviour
         
         // checking if on ground
         isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);    
-
+        //
         // jumping
         if(Input.GetButtonDown("Jump") && (isOnGround || canDoubleJump)) 
         {
@@ -87,4 +117,17 @@ public class PlayerControleer : MonoBehaviour
         anim.SetBool("isOnGround", isOnGround);
         anim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
     }
+
+    public void ShowAfterImage()
+    {
+      SpriteRenderer image = Instantiate(afterImage, transform.position, transform.rotation);
+        image.sprite = theSR.sprite;
+        image.transform.localScale = transform.localScale;
+        image.color = afterImage.color;
+
+        Destroy(image.gameObject, afterImageLifetime);
+
+        afterImageCounter = timeBetweenAfterImages;
+    }
+
 }

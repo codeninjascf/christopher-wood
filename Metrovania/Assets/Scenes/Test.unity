@@ -3950,6 +3950,12 @@ MonoBehaviour:
   shotPoint: {fileID: 1794353346}
   dashSpeed: 25
   dashTime: 0.2
+  theSR: {fileID: 0}
+  afterImage: {fileID: 0}
+  afterImageLifetime: 0.5
+  timeBetweenAfterImages: 0.03333334
+  afterImageColor: {r: 0.025752544, g: 0, b: 1, a: 0}
+  waitAfterDashing: 0.25
 --- !u!212 &2002338542
 SpriteRenderer:
   m_ObjectHideFlags: 0
