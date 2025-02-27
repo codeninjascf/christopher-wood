@@ -31,6 +31,11 @@ public class PlayerControleer : MonoBehaviour
     public float waitAfterDashing;
     private float dashRechargeCounter;
 
+    public GameObject standing, ball;
+    public float waitToBall;
+    private float ballCounter;
+    
+    
     void Start()
     {
         
@@ -51,7 +56,7 @@ public class PlayerControleer : MonoBehaviour
         {
 
 
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Fire2") && standing.activeSelf)
             {
                 dashCounter = dashTime;
 
@@ -108,6 +113,44 @@ public class PlayerControleer : MonoBehaviour
             theRB.velocity = new Vector2(theRB.velocity.x, jumpForce);
         }
 
+        // ball mode
+        if(!ball.activeSelf)
+        {
+            if(Input.GetAxisRaw("Vertical") < -.9f)
+            {
+                ballCounter -= Time.deltaTime;
+                if(ballCounter <= 0)
+                {
+                    ball.SetActive(true);
+                    standing.SetActive(false);
+                }
+            }
+            else
+            {
+                ballCounter = waitToBall;
+            }
+        } else
+        {
+            if (Input.GetAxisRaw("Vertical") > -.9f)
+            {
+                ballCounter -= Time.deltaTime;
+                if (ballCounter <= 0)
+                {
+                    ball.SetActive(false);
+                    standing.SetActive(true);
+                }
+            }
+            else
+            {
+                ballCounter = waitToBall;
+            }
+        }
+        
+        
+        
+        
+        
+        
         // Shooting
         if(Input.GetButtonDown("Fire1"))
         {

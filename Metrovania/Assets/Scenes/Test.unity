@@ -4212,6 +4212,9 @@ MonoBehaviour:
   timeBetweenAfterImages: 0.03333334
   afterImageColor: {r: 0.025752544, g: 0, b: 1, a: 0.50980395}
   waitAfterDashing: 0.25
+  standing: {fileID: 1530535284}
+  ball: {fileID: 1616049651}
+  waitToBall: 0.5
 --- !u!212 &2002338542
 SpriteRenderer:
   m_ObjectHideFlags: 0
