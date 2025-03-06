@@ -4215,6 +4215,7 @@ MonoBehaviour:
   standing: {fileID: 1530535284}
   ball: {fileID: 1616049651}
   waitToBall: 0.5
+  ballAnim: {fileID: 2002338543}
 --- !u!212 &2002338542
 SpriteRenderer:
   m_ObjectHideFlags: 0

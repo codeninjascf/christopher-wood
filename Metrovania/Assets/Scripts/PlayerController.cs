@@ -34,6 +34,8 @@ public class PlayerControleer : MonoBehaviour
     public GameObject standing, ball;
     public float waitToBall;
     private float ballCounter;
+
+    public Animator ballAnim;
     
     
     void Start()
@@ -146,8 +148,17 @@ public class PlayerControleer : MonoBehaviour
             }
         }
         
+        //moving animations
+        if(standing.activeSelf)
+        {
+            anim.SetBool("isOnGround", isOnGround);
+            anim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
+        }
         
-        
+        if(ball.activeSelf)
+        {
+            ballAnim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
+        }
         
         
         
