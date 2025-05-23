@@ -39,11 +39,13 @@ public class PlayerControleer : MonoBehaviour
 
     public Transform bombPoint;
     public GameObject bomb;
+
+    private PlayerAbilityTracker abilities;
     
     
     void Start()
     {
-        
+        abilities = GetComponent<PlayerAbilityTracker>();
     }
 
     
@@ -61,7 +63,7 @@ public class PlayerControleer : MonoBehaviour
         {
 
 
-            if (Input.GetButtonDown("Fire2") && standing.activeSelf)
+            if (Input.GetButtonDown("Fire2") && standing.activeSelf && abilities.canDash)
             {
                 dashCounter = dashTime;
 
@@ -105,7 +107,7 @@ public class PlayerControleer : MonoBehaviour
         isOnGround = Physics2D.OverlapCircle(groundPoint.position, .2f, whatIsGround);    
         //
         // jumping
-        if(Input.GetButtonDown("Jump") && (isOnGround || canDoubleJump)) 
+        if(Input.GetButtonDown("Jump") && (isOnGround || (canDoubleJump && abilities.canDoubleJump))) 
         {
             if (isOnGround)
             {
@@ -121,7 +123,7 @@ public class PlayerControleer : MonoBehaviour
         // ball mode
         if(!ball.activeSelf)
         {
-            if(Input.GetAxisRaw("Vertical") < -.9f)
+            if(Input.GetAxisRaw("Vertical") < -.9f && abilities.canBecomeBall)
             {
                 ballCounter -= Time.deltaTime;
                 if(ballCounter <= 0)
@@ -173,7 +175,7 @@ public class PlayerControleer : MonoBehaviour
                 Instantiate(shotToFire, shotPoint.position, shotPoint.rotation).moveDir = new Vector2(transform.localScale.x, 0f);
                 anim.SetTrigger("shotFired");
             
-            } else if(ball.activeSelf)
+            } else if(ball.activeSelf && abilities.canDropBomb)
             {
                 Instantiate(bomb, bombPoint.position, bombPoint.rotation);
             }
