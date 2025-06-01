@@ -11,6 +11,8 @@ public class BulletController : MonoBehaviour
 
     public GameObject impactEffect;
 
+    public int damageAmount = 1;
+
 
     void Start()
     {
@@ -25,6 +27,12 @@ public class BulletController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+       
+        if(other.tag == "Enemy" )
+        {
+            other.GetComponent<EnemyHealthContoller>().DamageEnemy(damageAmount);
+        }
+        
         if (other.gameObject.CompareTag("noCollide")) return;
         if (impactEffect != null)
         {

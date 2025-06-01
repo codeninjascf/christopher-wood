@@ -3765,9 +3765,10 @@ GameObject:
   - component: {fileID: 1157845601}
   - component: {fileID: 1157845600}
   - component: {fileID: 1157845602}
+  - component: {fileID: 1157845603}
   m_Layer: 0
   m_Name: EnemyWalker
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3873,6 +3874,20 @@ MonoBehaviour:
   jumpForce: 10
   theRB: {fileID: 1157845600}
   anim: {fileID: 932410596}
+--- !u!114 &1157845603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1157845598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f2fde5db2383a04594db06a296afc04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalHealth: 3
+  deathEffect: {fileID: 2002338537}
 --- !u!1 &1530535284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4234,6 +4249,8 @@ GameObject:
   - component: {fileID: 2002338542}
   - component: {fileID: 2002338544}
   - component: {fileID: 2002338545}
+  - component: {fileID: 2002338546}
+  - component: {fileID: 2002338547}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -4429,6 +4446,33 @@ MonoBehaviour:
   unlockDash: 0
   unlockBecomeBall: 1
   unlockDropBomb: 0
+--- !u!114 &2002338546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002338537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5733f3a41a8ea4f8709f0c6c4008ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentHealth: 0
+  maxHealth: 10
+--- !u!114 &2002338547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2002338537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8e7c2578981c54a98d86333bb3a637, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageAmount: 1
 --- !u!1001 &2039720828
 PrefabInstance:
   m_ObjectHideFlags: 0
