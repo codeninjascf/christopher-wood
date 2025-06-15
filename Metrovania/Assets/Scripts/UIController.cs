@@ -7,9 +7,17 @@ public class UIController : MonoBehaviour
 {
     public static UIController instance;
 
-    private void Awake ()
+    private void Awake()
     {
-        instance = this;   
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public Slider healthSlider;
@@ -29,13 +37,5 @@ public class UIController : MonoBehaviour
     {
         healthSlider.maxValue = maxHealth;
         healthSlider.value = currentHealth;
-
-        if(currentHealth <= 0)
-        {
-            currentHealth = 0;
-            gameObject.SetActive(false);
-        }
-
-        UIController.instance.UpdateHealth(currentHealth, maxHealth);
     }
 }
