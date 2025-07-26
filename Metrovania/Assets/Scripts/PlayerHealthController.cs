@@ -27,6 +27,7 @@ public class PlayerHealthController : MonoBehaviour
     public float invincLength, flashLength;
     private float invincCounter, flashCounter;
     public SpriteRenderer[] playerSprites;
+    private Vector3 respawnPoint;
 
     void Start()
     {
@@ -42,6 +43,27 @@ public class PlayerHealthController : MonoBehaviour
         UIController.instance.UpdateHealth(currentHealth, maxHealth);
     }
 
+    public void SetSpawn(Vector3 newPosition)
+    {
+        respawnPoint = newPosition;
+    }
+
+    public void Respawn()
+    {
+
+    }
+
+    public void HealPlayer (int healAmount)
+    {
+        currentHealth += healAmount;
+
+        if(currentHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        UIController.instance.UpdateHealth(currentHealth, maxHealth);
+    }
 
     
     

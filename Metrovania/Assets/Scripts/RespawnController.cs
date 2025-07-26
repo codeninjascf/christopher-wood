@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -48,5 +49,10 @@ public class RespawnController : MonoBehaviour
         thePlayer.transform.position = respawnPoint;
         thePlayer.SetActive(true);
         PlayerHealthController.instance.FillHealth();
+    }
+
+    internal void SetSpawn(Vector3 position)
+    {
+        throw new NotImplementedException();
     }
 }
