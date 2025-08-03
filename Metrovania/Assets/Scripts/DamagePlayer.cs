@@ -33,8 +33,9 @@ public class DamagePlayer : MonoBehaviour
             {
                 Instantiate(destroyEffect, transform.position, transform.rotation);
             }
+            Destroy(gameObject);
         }
-        Destroy(gameObject);
+        
     }
 
 }

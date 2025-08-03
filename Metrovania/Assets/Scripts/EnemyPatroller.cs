@@ -60,6 +60,6 @@ public class EnemyPatroller : MonoBehaviour
             }
         }
 
-        anim.SetFloat("speed", Mathf.Abs(theRB.velocity.x));
+        anim.SetFloat("Speed", Mathf.Abs(theRB.velocity.x));
     }
 }
